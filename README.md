@@ -6,7 +6,7 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 2. Move it to your Factorio mods directory.
 3. Start Factorio and research Automated Construction.
 
-##Importing Blueprints
+###Importing Blueprints
 1. Craft an empty blueprint
 2. Click the "Blueprint" button to show the panel.
 3. Copy a blueprint string from your friend.
@@ -23,12 +23,13 @@ YXM0I1DBgpDNOJKNYLY2Z4hvAemkonVnJFB62/Qpy7ZEZrwa1T29NJ9Gxlqb3yqCxyEqCOAKo1N9CjCt
 5mh5Oe2m6W4NqufQ3SpUz6FajooukTyFQ/dqFv8Rkofr7YSHdtXOrta6ZygD0+a4B/JfV+CPvIMCAAA=
 ```
 
-##Exporting Blueprints
+###Exporting Blueprints
 1. Click the "Blueprint" button to show the panel.
 2. Click "Save All"
 3. Find the blueprint in your "script-output/blueprint-string" folder.
 
 To export a single blueprint:
+
 1. Pick up a blueprint.
 2. Click the "Blueprint" button to show the panel.
 3. Click "Save As..."
@@ -39,10 +40,10 @@ To export a single blueprint:
 If you used the exe installer, your output folder is: %appdata%\Factorio\script-output\blueprint-string
 
 
-##Features
+###Features
 This mod has strict error checking, so bad strings will not crash your game or mess it up.  Please report any strings that do!
 
-###Changelog
+####Changelog
 Version 2.2.1
 - Stricter error checking
 
