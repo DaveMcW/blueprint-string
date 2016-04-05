@@ -33,7 +33,7 @@ YXM0I1DBgpDNOJKNYLY2Z4hvAemkonVnJFB62/Qpy7ZEZrwa1T29NJ9Gxlqb3yqCxyEqCOAKo1N9CjCt
 ---
 
 ####Exporting Blueprints
-1. Click the "Blueprint" button to show the panel.
+1. Click the ![Blueprint](http://davemcw.com/factorio/images/blueprint-icon-1.jpg) button to show the panel.
 2. Click "Save All"
 3. Find the blueprint in your "script-output/blueprint-string" folder.
 
