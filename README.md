@@ -21,11 +21,13 @@ Here is a sample blueprint string, for the classic design of 2 assembling machin
 
 ![2 assembling machines](http://davemcw.com/factorio/images/2-assembling-machines.jpg)
 ```
-[code]H4sIAAAAAAAA/43SUWvDIBDA8a9S+hxHIltfip+kjOL01h7omZ2mdAS/+67bKAsNWV4UxD+/aPRpE5Kz
+H4sIAAAAAAAA/43SUWvDIBDA8a9S+hxHIltfip+kjOL01h7omZ2mdAS/+67bKAsNWV4UxD+/aPRpE5Kz
 YXM0I1DBgpDNOJKNYLY2Z4hvAemkonVnJFB62/Qpy7ZEZrwa1T29NJ9Gxlqb3yqCxyEqCOAKo1N9CjCt
 9HfU/o3+p54fpZBOmIsQ7gy5KIaPQWbgafjziXoh7EXHC6ie0wX9fD+B361USBn4QWvvWuOR5Qpu6/pe
 5mh5Oe2m6W4NqufQ3SpUz6FajooukTyFQ/dqFv8Rkofr7YSHdtXOrta6ZygD0+a4B/JfV+CPvIMCAAA=
 ```
+
+---
 
 ####Exporting Blueprints
 1. Click the "Blueprint" button to show the panel.
@@ -42,6 +44,8 @@ To export a single blueprint:
 6. Find the blueprint in your "script-output/blueprint-string" folder.
 
 If you used the exe installer, your output folder is: %appdata%\Factorio\script-output\blueprint-string
+
+---
 
 ####Features
 This mod has strict error checking, so bad strings will not crash your game or mess it up.  Please report any strings that do!
