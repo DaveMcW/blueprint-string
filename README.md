@@ -4,7 +4,7 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 ---
 
 ####Installation
-1. Download the mod.
+1. [Download the mod](https://github.com/DaveMcW/blueprint-string/releases).
 2. Move it to your Factorio mods directory.
 3. Start Factorio and research Automated Construction.
 
