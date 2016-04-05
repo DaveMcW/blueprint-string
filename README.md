@@ -14,11 +14,11 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 ---
 
 ####Importing Blueprints
-1. Craft an empty blueprint
+1. Craft an empty blueprint.
 2. Click the ![Blueprint](http://davemcw.com/factorio/images/blueprint-icon-1.png) button to show the panel.
 3. Copy a blueprint string from your friend.
 4. Paste the blueprint string in the text box.
-5. Click ![Load](http://davemcw.com/factorio/images/blueprint-icon-2.png).
+5. Click ![Load](http://davemcw.com/factorio/images/blueprint-icon-2.png)
 
 Here is a sample blueprint string, for the classic design of 2 assembling machines fed by logistics bots.
 
