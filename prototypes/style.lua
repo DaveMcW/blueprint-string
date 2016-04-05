@@ -51,8 +51,8 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 {
 	type = "button_style",
 	parent = "button_style",
-	width = 36,
-	height = 36,
+	width = 38,
+	height = 38,
 	default_graphical_set =
 	{
 		type = "monolith",
@@ -102,8 +102,8 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 {
 	type = "button_style",
 	parent = "button_style",
-	width = 36,
-	height = 36,
+	width = 38,
+	height = 38,
 	default_graphical_set =
 	{
 		type = "monolith",
@@ -153,8 +153,8 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 {
 	type = "button_style",
 	parent = "button_style",
-	width = 36,
-	height = 36,
+	width = 38,
+	height = 38,
 	default_graphical_set =
 	{
 		type = "monolith",
@@ -204,8 +204,8 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 {
 	type = "button_style",
 	parent = "button_style",
-	width = 36,
-	height = 36,
+	width = 38,
+	height = 38,
 	default_graphical_set =
 	{
 		type = "monolith",
