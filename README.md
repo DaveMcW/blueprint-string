@@ -1,4 +1,7 @@
 #Blueprint String
+
+![blueprint toolbar](http://davemcw.com/factorio/images/blueprint-bar-2.jpg)
+
 This mod for [Factorio](https://www.factorio.com/) makes it easy to import and share blueprints.
 
 ---
