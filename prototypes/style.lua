@@ -1,63 +1,3 @@
---Fonts
-data:extend(
-{
-	{
-		type = "font",
-		name = "blueprintstring_font",
-		from = "default",
-		size = 12
-	}
-}
-)
---[[
-data.raw["gui-style"].default["blueprintstring_button_style"] =
-{
-		type = "button_style",
-		parent = "button_style",
-		top_padding = 3,
-		right_padding = 3,
-		bottom_padding = 3,
-		left_padding = 3,
-		font = "blueprintstring_font",
-		hovered_font_color = {r=0.1, g=0.1, b=0.1},
-		default_graphical_set =
-		{
-		type = "monolith",
-		monolith_image =
-		{
-		filename = "__blueprint-string__/graphics/gui.png",
-		priority = "extra-high-no-scale",
-		width = 32,
-		height = 32,
-		x = 0
-		}
-		},
-		hovered_graphical_set =
-		{
-		type = "monolith",
-		monolith_image =
-		{
-		filename = "__blueprint-string__/graphics/gui.png",
-		priority = "extra-high-no-scale",
-		width = 32,
-		height = 32,
-		x = 32
-		}
-		},
-		clicked_graphical_set =
-		{
-		type = "monolith",
-		monolith_image =
-		{
-		filename = "__blueprint-string__/graphics/gui.png",
-		width = 32,
-		height = 32,
-		x = 0
-		}
-		}
-}
-]]--
-
 data.raw["gui-style"].default["blueprintstring_button_style"] =
 {
 	type = "button_style",
@@ -113,7 +53,6 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 	parent = "button_style",
 	width = 36,
 	height = 36,
-	font = "blueprintstring_font",
 	default_graphical_set =
 	{
 		type = "monolith",
