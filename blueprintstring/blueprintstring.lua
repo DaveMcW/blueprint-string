@@ -1,11 +1,5 @@
 --[[
 Blueprint String
-Version: 2.0.4
-LastModified: September 13 2015
-Copyright (C) 2015 David McWilliams
-	
-This library is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-http://creativecommons.org/licenses/by-nc-sa/4.0/
 
 This library helps you convert blueprints to text strings, and text strings to blueprints.
 
