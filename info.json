@@ -1,0 +1,10 @@
+{
+  "name": "blueprint-string",
+  "version": "2.3.0",
+  "title": "Blueprint String",
+  "author": "DaveMcW",
+  "contact": "",
+  "homepage": "http://www.factorioforums.com/forum/viewtopic.php?t=13651",
+  "description": "Converts text strings into blueprints",
+  "dependencies": ["base >= 0.12.11"]
+}
