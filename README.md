@@ -1,11 +1,14 @@
 #Blueprint String
 This mod for [Factorio](https://www.factorio.com/) makes it easy to import and share blueprints.
 
+---
+
 ####Installation
 1. Download the mod.
 2. Move it to your Factorio mods directory.
 3. Start Factorio and research Automated Construction.
 
+---
 
 ####Importing Blueprints
 1. Craft an empty blueprint
@@ -39,7 +42,6 @@ To export a single blueprint:
 6. Find the blueprint in your "script-output/blueprint-string" folder.
 
 If you used the exe installer, your output folder is: %appdata%\Factorio\script-output\blueprint-string
-
 
 ####Features
 This mod has strict error checking, so bad strings will not crash your game or mess it up.  Please report any strings that do!
