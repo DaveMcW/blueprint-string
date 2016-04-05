@@ -6,6 +6,7 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 2. Move it to your Factorio mods directory.
 3. Start Factorio and research Automated Construction.
 
+
 ####Importing Blueprints
 1. Craft an empty blueprint
 2. Click the "Blueprint" button to show the panel.
@@ -106,4 +107,3 @@ Version 0.0.2
 
 Version 0.0.1
 - First release
-- 
