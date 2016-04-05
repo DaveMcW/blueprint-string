@@ -50,6 +50,8 @@ If you used the exe installer, your output folder is: %appdata%\Factorio\script-
 ####Features
 This mod has strict error checking, so bad strings will not crash your game or mess it up.  Please report any strings that do!
 
+---
+
 ####Changelog
 Version 2.2.1
 - Stricter error checking
