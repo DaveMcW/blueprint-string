@@ -60,8 +60,8 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
+			width = 36,
+			height = 36,
 			x = 0,
 			y = 0,
 		}
@@ -73,10 +73,10 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 0,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 36,
+			y = 0,
 		}
 	},
 	clicked_graphical_set =
@@ -85,10 +85,10 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 		monolith_image =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
-			width = 72,
-			height = 72,
-			x = 0,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 36,
+			y = 0,
 		}
 	},
 	left_click_sound =
@@ -111,9 +111,9 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 216,
+			width = 36,
+			height = 36,
+			x = 72,
 			y = 0,
 		}
 	},
@@ -124,10 +124,10 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 216,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 108,
+			y = 0,
 		}
 	},
 	clicked_graphical_set =
@@ -136,10 +136,10 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 		monolith_image =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
-			width = 72,
-			height = 72,
-			x = 216,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 108,
+			y = 0,
 		}
 	},
 	left_click_sound =
@@ -162,10 +162,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 72,
-			y = 0,
+			width = 36,
+			height = 36,
+			x = 0,
+			y = 36,
 		}
 	},
 	hovered_graphical_set =
@@ -175,10 +175,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 72,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 36,
+			y = 36,
 		}
 	},
 	clicked_graphical_set =
@@ -187,10 +187,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 		monolith_image =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
-			width = 72,
-			height = 72,
-			x = 72,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 36,
+			y = 36,
 		}
 	},
 	left_click_sound =
@@ -213,10 +213,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 144,
-			y = 0,
+			width = 36,
+			height = 36,
+			x = 72,
+			y = 36,
 		}
 	},
 	hovered_graphical_set =
@@ -226,10 +226,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
 			priority = "extra-high-no-scale",
-			width = 72,
-			height = 72,
-			x = 144,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 108,
+			y = 36,
 		}
 	},
 	clicked_graphical_set =
@@ -238,10 +238,10 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 		monolith_image =
 		{
 			filename = "__blueprint-string__/graphics/gui.png",
-			width = 72,
-			height = 72,
-			x = 144,
-			y = 72,
+			width = 36,
+			height = 36,
+			x = 108,
+			y = 36,
 		}
 	},
 	left_click_sound =
