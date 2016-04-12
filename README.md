@@ -56,6 +56,12 @@ This mod has strict error checking, so bad strings will not crash your game or m
 ---
 
 ####Changelog
+Version 2.3.1
+- Added de translation
+
+Version 2.3.0
+- New icons
+
 Version 2.2.1
 - Stricter error checking
 
