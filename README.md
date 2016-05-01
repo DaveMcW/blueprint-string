@@ -56,6 +56,9 @@ This mod has strict error checking, so bad strings will not crash your game or m
 ---
 
 ####Changelog
+Version 2.3.2
+- Buttons compatible with Factorio 0.12.32
+
 Version 2.3.1
 - Added de translation
 
