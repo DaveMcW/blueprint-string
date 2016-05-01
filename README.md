@@ -24,10 +24,10 @@ Here is a sample blueprint string, for the classic design of 2 assembling machin
 
 ![2 assembling machines](http://davemcw.com/factorio/images/2-assembling-machines.jpg)
 ```
-H4sIAAAAAAAA/43SUWvDIBDA8a9S+hxHIltfip+kjOL01h7omZ2mdAS/+67bKAsNWV4UxD+/aPRpE5Kz
-YXM0I1DBgpDNOJKNYLY2Z4hvAemkonVnJFB62/Qpy7ZEZrwa1T29NJ9Gxlqb3yqCxyEqCOAKo1N9CjCt
-9HfU/o3+p54fpZBOmIsQ7gy5KIaPQWbgafjziXoh7EXHC6ie0wX9fD+B361USBn4QWvvWuOR5Qpu6/pe
-5mh5Oe2m6W4NqufQ3SpUz6FajooukTyFQ/dqFv8Rkofr7YSHdtXOrta6ZygD0+a4B/JfV+CPvIMCAAA=
+H4sIAAAAAAAA/42R0WrDMAxFfyX0OYImg74Uf0vxbK0V2HImOWHD5N/ndKOsacn2FAjn5lzd+NSE5G
+xoTqYgZ8qEakphG9HsrCrG10B8hmjdhRih37VD0oolNuXDwEv7afbz3P4kNFrJQKwoGWXFdle29STo
+ri8Pt1xIZ9JMDtwFNcNQzTQhDJIm8usP7e+df7dclYzoaYyAodaQ6hxSwPvA0hS6/531cFV/i71Z3R
+yjex5bjSH4PtbnsxV+VdxwPagONUYu8fKniT0uyMaW1fFN9ZvUPB8F8yjcnI7I/gvQdo5aWgIAAA==
 ```
 
 ---
