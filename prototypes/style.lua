@@ -250,3 +250,54 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 		volume = 1
 	},
 }
+
+data.raw["gui-style"].default["blueprintstring_button_upgrade"] =
+{
+	type = "button_style",
+	parent = "button_style",
+	width = 33,
+	height = 33,
+	default_graphical_set =
+	{
+		type = "monolith",
+		monolith_image =
+		{
+			filename = "__blueprint-string__/graphics/gui.png",
+			priority = "extra-high-no-scale",
+			width = 36,
+			height = 36,
+			x = 144,
+			y = 0,
+		}
+	},
+	hovered_graphical_set =
+	{
+		type = "monolith",
+		monolith_image =
+		{
+			filename = "__blueprint-string__/graphics/gui.png",
+			priority = "extra-high-no-scale",
+			width = 36,
+			height = 36,
+			x = 144,
+			y = 0,
+		}
+	},
+	clicked_graphical_set =
+	{
+		type = "monolith",
+		monolith_image =
+		{
+			filename = "__blueprint-string__/graphics/gui.png",
+			width = 36,
+			height = 36,
+			x = 144,
+			y = 0,
+		}
+	},
+	left_click_sound =
+	{
+		filename = "__core__/sound/gui-click.ogg",
+		volume = 1
+	},
+}

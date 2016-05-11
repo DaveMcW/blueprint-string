@@ -44,6 +44,7 @@ function expand_gui(player)
 		frame.add{type="button", name="blueprint-string-load", style="blueprintstring_button_load"}
 		frame.add{type="button", name="blueprint-string-save-as", style="blueprintstring_button_saveas"}
 		frame.add{type="button", name="blueprint-string-save-all", style="blueprintstring_button_saveall"}
+		frame.add{type="button", name="blueprint-upgrade", style="blueprintstring_button_upgrade"}
 	end
 end
 
@@ -158,6 +159,10 @@ function save_blueprint(player, stack, filename)
 	blueprints_saved = blueprints_saved + 1
 end
 
+function holding_blueprint(player)
+	return (player.cursor_stack.valid_for_read and player.cursor_stack.type == "blueprint" and player.cursor_stack.is_blueprint_setup())
+end
+
 function save_blueprint_as(player, filename)
 	blueprints_saved = 0
 
@@ -204,10 +209,6 @@ function save_blueprints(player)
 	end
 end
 
-function holding_blueprint(player)
-	return (player.cursor_stack.valid_for_read and player.cursor_stack.type == "blueprint" and player.cursor_stack.is_blueprint_setup())
-end
-
 function prompt_for_filename(player)
 	if (not holding_blueprint(player)) then
 		player.print({"no-blueprint-in-hand"})
@@ -228,6 +229,55 @@ function prompt_for_filename(player)
 	line2.add{type="button", name="blueprint-string-filename-cancel", caption={"cancel"}, font_color=white, style="blueprintstring_button_style"}
 end
 
+function contains_entities(blueprint, entities)
+	if not blueprint.entities then
+		return false 
+	end
+	
+	for _,e in pairs(blueprint.entities) do
+		if entities[e.name] then
+			return true
+		end
+    end
+
+	return false
+end
+
+function upgrade_blueprint(player)
+	if (not holding_blueprint(player)) then
+		player.print({"no-blueprint-in-hand"})
+		return
+	end
+
+	local entities = player.cursor_stack.get_blueprint_entities()
+	local tiles = player.cursor_stack.get_blueprint_tiles()
+	
+	local offset = { x=-0.5, y=-0.5 }
+	local rail_entities = {}
+	rail_entities["straight-rail"] = true
+	rail_entities["curved-rail"]=true
+	rail_entities["rail-signal"]=true
+	rail_entities["rail-chain-signal"]=true
+	rail_entities["train-stop"]=true
+	rail_entities["smart-train-stop"]=true
+	if contains_entities(entities, rail_entities) then
+		offset = { x = -1, y = -1 }
+	end
+
+	if (entities) then
+		for _, entity in pairs(entities) do
+			entity.position = {x = entity.position.x + offset.x, y = entity.position.y + offset.y}
+		end
+		player.cursor_stack.set_blueprint_entities(entities)
+	end
+	if (tiles) then
+		for _, entity in pairs(tiles) do
+			tile.position = {x = tile.position.x + offset.x, y = tile.position.y + offset.y}
+		end
+		player.cursor_stack.set_blueprint_tiles(tiles)
+    end
+end
+
 script.on_event(defines.events.on_gui_click, function(event) 
 	local player = game.players[event.element.player_index]
 	local name = event.element.name
@@ -243,6 +293,8 @@ script.on_event(defines.events.on_gui_click, function(event)
 		player.gui.center["blueprint-string-filename-prompt"].destroy()
 	elseif (name == "blueprint-string-button") then
 		expand_gui(player)
+	elseif (name == "blueprint-upgrade") then
+		upgrade_blueprint(player)
 	end
 end)
 

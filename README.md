@@ -51,11 +51,16 @@ If you used the exe installer, your output folder is: %appdata%\Factorio\script-
 ---
 
 ####Features
+Factorio 0.12.32 broke old blueprints.  You can click the ![Upgrade](http://davemcw.com/factorio/images/blueprint-icon-5.png) button while holding a blueprint to fix them. It may take several clicks to fix rail blueprints.
+
 This mod has strict error checking, so bad strings will not crash your game or mess it up.  Please report any strings that do!
 
 ---
 
 ####Changelog
+Version 2.4.0
+- Added upgrade button
+
 Version 2.3.2
 - Buttons compatible with Factorio 0.12.32
 
