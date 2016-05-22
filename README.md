@@ -58,6 +58,9 @@ This mod has strict error checking, so bad strings will not crash your game or m
 ---
 
 ####Changelog
+Version 2.4.1
+- Added ru translation
+
 Version 2.4.0
 - Added upgrade button
 
