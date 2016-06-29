@@ -1,10 +1,9 @@
-require "defines"
 local BlueprintString = require "blueprintstring.blueprintstring"
 BlueprintString.COMPRESS_STRINGS = true
 BlueprintString.LINE_LENGTH = 120
 
-function init_gui(player, ignoretech)
-	if (not ignoretech and not player.force.technologies["automated-construction"].researched) then
+function init_gui(player)
+	if (not player.force.technologies["automated-construction"].researched) then
 		return
 	end
 
@@ -15,19 +14,19 @@ end
 
 script.on_init(function()
 	for _, player in pairs(game.players) do
-		init_gui(player, false)
+		init_gui(player)
 	end
 end)
 
 script.on_event(defines.events.on_player_created, function(event)
-	init_gui(game.players[event.player_index], false)
+	init_gui(game.players[event.player_index])
 end)
 
 script.on_event(defines.events.on_research_finished, function(event)
 	if (event.research.name == "automated-construction") then
 		for _, player in pairs(game.players) do
 			if (event.research.force.name == player.force.name) then
-				init_gui(player, true)
+				init_gui(player)
 			end
 		end
 	end

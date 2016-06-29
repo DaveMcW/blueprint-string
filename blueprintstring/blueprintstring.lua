@@ -21,8 +21,6 @@ blueprint.blueprint_icons = blueprint_table.icons
 
 ]]--
 
-
-
 local serpent = require "serpent0272"
 local inflate = require "deflatelua"
 local deflate = require "zlib-deflate"
@@ -45,6 +43,23 @@ function fix_entities(array)
 	local count = 1
 	for _, entity in ipairs(array) do
 		if (type(entity) == 'table') then
+			-- Factorio 0.12 format
+			if (entity.conditions) then
+				if (entity.conditions.circuit) then
+					entity.control_behavior = {circuit_condition = entity.conditions.circuit}
+				end
+				if (entity.conditions.arithmetic) then
+					entity.control_behavior = {arithmetic_conditions = entity.conditions.arithmetic}
+				end
+				if (entity.conditions.decider) then
+					entity.control_behavior = {decider_conditions = entity.conditions.decider}
+				end
+			end
+			if (entity.filters) then
+				entity.control_behavior = {filters = entity.filters}
+			end
+
+			-- Add entity number
 			entity.entity_number = count
 			entities[count] = entity
 			count = count + 1
@@ -60,11 +75,17 @@ function fix_icons(array)
 	local count = 1
 	for _, icon in pairs(array) do
 		if (count > 4) then break end
-		if (type(icon) == 'string') then
-			table.insert(icons, {index = count, name = icon})
+		if (type(icon) == "table" and icon.signal) then
+			-- Factorio 0.13 format
+			table.insert(icons, {index = count, signal = signal})
 			count = count + 1
-		elseif (type(icon) == 'table' and icon.name) then
-			table.insert(icons, {index = count, name = icon.name})
+		elseif (type(icon) == "table" and icon.name) then
+			-- Factorio 0.12 format
+			table.insert(icons, {index = count, signal = {type = "item", name = icon.name}})
+			count = count + 1
+		elseif (type(icon) == "string") then
+			-- Factorio 0.11 format
+			table.insert(icons, {index = count, signal = {type = "item", name = icon}})
 			count = count + 1
 		end
 	end
@@ -83,21 +104,6 @@ function remove_useless_fields(entities)
 	end
 end
 
-function reformat_icons(array)
-	local icons = {}
-	local count = 1
-	if (array[0]) then
-		table.insert(icons, {index=count, name=array[0].name})
-		count = count + 1
-	end
-	for _, icon in ipairs(array) do
-		if (count > 4) then break end
-		table.insert(icons, {index=count, name=icon.name})
-		count = count + 1
-	end
-	return icons
-end
-
 -- ====================================================
 -- Public API
 
@@ -108,7 +114,6 @@ M.LINE_LENGTH = 120  -- Length of lines in compressed string. 0 means unlimited 
 
 M.toString = function(blueprint_table)
 	remove_useless_fields(blueprint_table.entities)
-	blueprint_table.icons = reformat_icons(blueprint_table.icons)
 	local str = serpent.dump(blueprint_table)
 	if (M.COMPRESS_STRINGS) then
 		str = deflate.gzip(str)
@@ -136,6 +141,28 @@ M.fromString = function(data)
 		end
 	end
 
+	-- Factorio 0.12 to 0.13 entity rename
+	data = data:gsub("[%w-]+", {
+		["basic-accumulator"] = "accumulator",
+		["basic-armor"] = "light-armor",
+		["basic-beacon"] = "beacon",
+		["basic-bullet-magazine"] = "firearm-magazine",
+		["basic-exoskeleton-equipment"] = "exoskeleton-equipment",
+		["basic-grenade"] = "grenade",
+		["basic-inserter"] = "inserter",
+		["basic-mining-drill"] = "electric-mining-drill",
+		["basic-modular-armor"] = "modular-armor",
+		["basic-laser-defense-equipment"] = "personal-laser-defense-equipment",
+		["basic-transport-belt"] = "transport-belt",
+		["basic-transport-belt-to-ground"] = "underground-belt",
+		["basic-splitter"] = "splitter",
+		["express-transport-belt-to-ground"] = "express-underground-belt",
+		["fast-transport-belt-to-ground"] = "fast-underground-belt",
+		["piercing-bullet-magazine"] = "piercing-rounds-magazine",
+		["smart-chest"] = "steel-chest",
+		["smart-inserter"] = "filter-inserter",
+	})
+		
 	local status, result = serpent.load(data)
 	if (not status) then
 		--game.player.print(result)
