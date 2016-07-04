@@ -55,6 +55,7 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 Version 3.0.2
 - Fixed icon bug with old rail blueprints
+- Added hu translation
 
 Version 3.0.1
 - Fixed icon bug
