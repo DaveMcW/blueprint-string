@@ -16,9 +16,13 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 Here is a sample blueprint string, for the classic design of 2 assembling machines fed by logistics bots.
 
 ![2 assembling machines](http://davemcw.com/factorio/images/2-assembling-machines-2.jpg)
-```
-H4sIAAAAAAAA/7XSwWrDMAwG4FcJOcfQZNBL8bMYN9YSMUfObCVtMXn3KYOxdtlGGOxkkPVJ /0EuFD601hdGZyBGRkg6Z7ID6NKmBMPZI3VqsG2PBKopqzEkaQuk81Wrp+qmD8tS7RZfwAAO p0GBh5YjtmoMHh5BLUDVn8KHDhNLa9tDYhXhdZIX4qM6iPoZjZITZ1BjDDO67+xdxGcrAilB 3GxR9Xtr5TBK/rV4rNpAHIM3Z+jtjCHqLBWSb8PBfOQwBHwJ8UVznGD/qvp+VbOHbQI2/xVw k+8oDGX0ek8JO7JeZ76NMgUZhrL65WIEkoPrOu+vtFmW5RSBp0iFOQG5N4/Glj/qAgAA
-```
+~~~
+H4sIAAAAAAAA/7XSwWrDMAwG4FcJOcfQZNBL8bMYN9YSMUfObCVtMXn3KYOxdtlGGOxkkPVJ
+/0EuFD601hdGZyBGRkg6Z7ID6NKmBMPZI3VqsG2PBKopqzEkaQuk81Wrp+qmD8tS7RZfwAAO
+p0GBh5YjtmoMHh5BLUDVn8KHDhNLa9tDYhXhdZIX4qM6iPoZjZITZ1BjDDO67+xdxGcrAilB
+3GxR9Xtr5TBK/rV4rNpAHIM3Z+jtjCHqLBWSb8PBfOQwBHwJ8UVznGD/qvp+VbOHbQI2/xVw
+k+8oDGX0ek8JO7JeZ76NMgUZhrL65WIEkoPrOu+vtFmW5RSBp0iFOQG5N4/Glj/qAgAA
+~~~
 
 ---
 
