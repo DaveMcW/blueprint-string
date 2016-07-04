@@ -44,7 +44,7 @@ function fix_entities(array)
 	for _, entity in ipairs(array) do
 		if (type(entity) == 'table') then
 			-- Factorio 0.12 format
-			if (entity.conditions) then
+			if (entity.conditions and type(entity.conditions == 'table')) then
 				if (entity.conditions.circuit) then
 					entity.control_behavior = {circuit_condition = entity.conditions.circuit}
 				end
@@ -77,15 +77,14 @@ function fix_icons(array)
 		if (count > 4) then break end
 		if (type(icon) == "table" and icon.signal) then
 			-- Factorio 0.13 format
-			table.insert(icons, {index = count, signal = signal})
+			table.insert(icons, {index = count, signal = icon.signal})
 			count = count + 1
 		elseif (type(icon) == "table" and icon.name) then
 			-- Factorio 0.12 format
+			if (icon.name == "straight-rail") then
+				icon.name = "rail"
+			end
 			table.insert(icons, {index = count, signal = {type = "item", name = icon.name}})
-			count = count + 1
-		elseif (type(icon) == "string") then
-			-- Factorio 0.11 format
-			table.insert(icons, {index = count, signal = {type = "item", name = icon}})
 			count = count + 1
 		end
 	end

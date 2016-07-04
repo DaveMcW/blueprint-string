@@ -6,13 +6,6 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 
 ---
 
-####Installation
-1. [Download the mod](https://github.com/DaveMcW/blueprint-string/releases).
-2. Move it to your Factorio mods directory.
-3. Start Factorio and research Automated Construction.
-
----
-
 ####Importing Blueprints
 1. Craft an empty blueprint.
 2. Click the ![Blueprint](http://davemcw.com/factorio/images/blueprint-icon-1.png) button to show the panel.
@@ -22,12 +15,9 @@ This mod for [Factorio](https://www.factorio.com/) makes it easy to import and s
 
 Here is a sample blueprint string, for the classic design of 2 assembling machines fed by logistics bots.
 
-![2 assembling machines](http://davemcw.com/factorio/images/2-assembling-machines.jpg)
+![2 assembling machines](http://davemcw.com/factorio/images/2-assembling-machines-2.jpg)
 ```
-H4sIAAAAAAAA/42R0WrDMAxFfyX0OYImg74Uf0vxbK0V2HImOWHD5N/ndKOsacn2FAjn5lzd+NSE5G
-xoTqYgZ8qEakphG9HsrCrG10B8hmjdhRih37VD0oolNuXDwEv7afbz3P4kNFrJQKwoGWXFdle29STo
-ri8Pt1xIZ9JMDtwFNcNQzTQhDJIm8usP7e+df7dclYzoaYyAodaQ6hxSwPvA0hS6/531cFV/i71Z3R
-yjex5bjSH4PtbnsxV+VdxwPagONUYu8fKniT0uyMaW1fFN9ZvUPB8F8yjcnI7I/gvQdo5aWgIAAA==
+H4sIAAAAAAAA/7XSwWrDMAwG4FcJOcfQZNBL8bMYN9YSMUfObCVtMXn3KYOxdtlGGOxkkPVJ /0EuFD601hdGZyBGRkg6Z7ID6NKmBMPZI3VqsG2PBKopqzEkaQuk81Wrp+qmD8tS7RZfwAAO p0GBh5YjtmoMHh5BLUDVn8KHDhNLa9tDYhXhdZIX4qM6iPoZjZITZ1BjDDO67+xdxGcrAilB 3GxR9Xtr5TBK/rV4rNpAHIM3Z+jtjCHqLBWSb8PBfOQwBHwJ8UVznGD/qvp+VbOHbQI2/xVw k+8oDGX0ek8JO7JeZ76NMgUZhrL65WIEkoPrOu+vtFmW5RSBp0iFOQG5N4/Glj/qAgAA
 ```
 
 ---
@@ -46,7 +36,7 @@ To export a single blueprint:
 5. Click "Save"
 6. Find the blueprint in your "script-output/blueprint-string" folder.
 
-If you used the exe installer, your output folder is: %appdata%\Factorio\script-output\blueprint-string
+If you used the Windows installer, your output folder is: %appdata%\Factorio\script-output\blueprint-string
 
 ---
 
@@ -58,6 +48,16 @@ This mod has strict error checking, so bad strings will not crash your game or m
 ---
 
 ####Changelog
+
+Version 3.0.2
+- Fixed icon bug with old rail blueprints
+
+Version 3.0.1
+- Fixed icon bug
+
+Version 3.0.0
+- Compatible with Factorio 0.13.0
+
 Version 2.4.1
 - Added ru translation
 
