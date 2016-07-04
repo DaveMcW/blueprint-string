@@ -81,7 +81,7 @@ function fix_icons(array)
 			count = count + 1
 		elseif (type(icon) == "table" and icon.name) then
 			-- Factorio 0.12 format
-			if (icon.name == "straight-rail") then
+			if (icon.name == "straight-rail" or icon.name == "curved-rail") then
 				icon.name = "rail"
 			end
 			table.insert(icons, {index = count, signal = {type = "item", name = icon.name}})
