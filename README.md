@@ -53,6 +53,9 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 ####Changelog
 
+Version 3.0.3
+- Fixed filter inserter bug
+
 Version 3.0.2
 - Fixed icon bug with old rail blueprints
 - Added hu translation
