@@ -44,7 +44,7 @@ function fix_entities(array)
 	for _, entity in ipairs(array) do
 		if (type(entity) == 'table') then
 			-- Factorio 0.12 format
-			if (entity.conditions and type(entity.conditions == 'table')) then
+			if (entity.conditions and type(entity.conditions) == 'table') then
 				if (entity.conditions.circuit) then
 					entity.control_behavior = {circuit_condition = entity.conditions.circuit}
 				end
@@ -54,9 +54,6 @@ function fix_entities(array)
 				if (entity.conditions.decider) then
 					entity.control_behavior = {decider_conditions = entity.conditions.decider}
 				end
-			end
-			if (entity.filters) then
-				entity.control_behavior = {filters = entity.filters}
 			end
 
 			-- Add entity number
@@ -149,12 +146,12 @@ M.fromString = function(data)
 		["basic-exoskeleton-equipment"] = "exoskeleton-equipment",
 		["basic-grenade"] = "grenade",
 		["basic-inserter"] = "inserter",
+		["basic-laser-defense-equipment"] = "personal-laser-defense-equipment",
 		["basic-mining-drill"] = "electric-mining-drill",
 		["basic-modular-armor"] = "modular-armor",
-		["basic-laser-defense-equipment"] = "personal-laser-defense-equipment",
+		["basic-splitter"] = "splitter",
 		["basic-transport-belt"] = "transport-belt",
 		["basic-transport-belt-to-ground"] = "underground-belt",
-		["basic-splitter"] = "splitter",
 		["express-transport-belt-to-ground"] = "express-underground-belt",
 		["fast-transport-belt-to-ground"] = "fast-underground-belt",
 		["piercing-bullet-magazine"] = "piercing-rounds-magazine",

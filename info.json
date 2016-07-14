@@ -1,6 +1,6 @@
 {
   "name": "blueprint-string",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "title": "Blueprint String",
   "author": "DaveMcW",
   "description": "Converts text strings into blueprints",
