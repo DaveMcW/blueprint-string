@@ -1,6 +1,9 @@
 local BlueprintString = require "blueprintstring.blueprintstring"
-BlueprintString.COMPRESS_STRINGS = false
+BlueprintString.COMPRESS_STRINGS = true
 BlueprintString.LINE_LENGTH = 120
+
+-- Total inventory slots for a blueprint book. How can I detect this at runtime?
+local BOOK_MAX_SLOTS = 31 
 
 function init_gui(player)
 	if (not player.force.technologies["automated-construction"].researched) then
@@ -133,7 +136,7 @@ end
 
 function find_empty_book(player, slots, no_crafting)
 	if (holding_book(player)) then
-		for _, page in pairs(book_inventory(book)) do
+		for _, page in pairs(book_inventory(player.cursor_stack)) do
 			if (page.is_blueprint_setup()) then
 				page.set_blueprint_entities(nil)
 				page.set_blueprint_tiles(nil)
@@ -161,7 +164,7 @@ function find_empty_book(player, slots, no_crafting)
 			pages = pages + 1
 		end
 		if (empty) then
-			if (pages + advanced_circuits >= slots) then
+			if (slots <= pages + advanced_circuits) then
 				return book
 			end
 			if (not first_empty_book) then
@@ -190,6 +193,38 @@ function find_empty_book(player, slots, no_crafting)
 	return nil
 end
 
+function load_blueprint_data(blueprint, data)
+	if (not data.icons or type(data.icons) ~= "table" or #data.icons < 1) then
+		return {"unknown-format"}
+	end
+
+	status, result = pcall(blueprint.set_blueprint_entities, data.entities)
+	if (not status) then
+		blueprint.set_blueprint_entities(nil)
+		return {"blueprint-api-error", result}
+	end
+
+	status, result = pcall(blueprint.set_blueprint_tiles, data.tiles)
+	if (not status) then
+		blueprint.set_blueprint_entities(nil)
+		blueprint.set_blueprint_tiles(nil)
+		return {"blueprint-api-error", result}
+	end
+
+	if (blueprint.is_blueprint_setup()) then
+		status, result = pcall(function() blueprint.blueprint_icons = data.icons end)
+		if (not status) then
+			blueprint.set_blueprint_entities(nil)
+			blueprint.set_blueprint_tiles(nil)
+			return {"blueprint-icon-error", result}
+		end
+	end
+
+	blueprint.label = data.name or ""
+
+	return nil
+end
+
 function load_blueprint(player)
 	local textbox = player.gui.left["blueprint-string"]["blueprint-string-text"]
 	local data = trim(textbox.text)
@@ -205,62 +240,104 @@ function load_blueprint(player)
 		return
 	end
 
-	local blueprint
-	if (blueprint_format.book) then
-		if (type(blueprint_format.book) ~= "table" or #blueprint_format.book < 1) then
-			player.print({"unknown-format"})
-			return
-		end
-		blueprint = find_empty_book(player, #blueprint_format.book)
-		if (not blueprint) then
-			player.print({"no-empty-blueprint"})
-			return
-		end
-		local advanced_circuits = #blueprint_format.book - #book_inventory(blueprint)
-		if (advanced-circuits > player.get_item_count("advanced-circuit")) then
-			player.print({"need-advanced-circuit", advanced_circuits})
-			return
-		end
-	else
+	local blueprint = nil
+	local book = nil
+	if (not blueprint_format.book) then
+		-- Blueprint
 		blueprint = find_empty_blueprint(player)
 		if (not blueprint) then
 			player.print({"no-empty-blueprint"})
 			return
 		end
+	else
+		-- Blueprint Book
+		if (type(blueprint_format.book) ~= "table") then
+			textbox.text = ""
+			player.print({"unknown-format"})
+			return
+		end
+
+		local page_count = 0
+		for _, page in pairs(blueprint_format.book) do
+			page_count = page_count + 1
+		end
+		if (page_count < 1) then
+			textbox.text = ""
+			player.print({"unknown-format"})
+			return
+		end
+
+		local slots = math.min(page_count, BOOK_MAX_SLOTS)
+		book = find_empty_book(player, slots)
+		if (not book) then
+			player.print({"no-empty-blueprint"})
+			return
+		end
+
+		local active = book.get_inventory(defines.inventory.item_active)
+		local main = book.get_inventory(defines.inventory.item_main)
+
+		local advanced_circuits = slots - active.get_item_count("blueprint") - main.get_item_count("blueprint")
+		if (advanced_circuits > player.get_item_count("advanced-circuit")) then
+			player.print({"need-advanced-circuit", advanced_circuits})
+			return
+		end
+		
+		if (advanced_circuits > 0) then
+			player.remove_item{name="advanced-circuit", count=advanced_circuits}
+		end
+
+		-- Create the required blueprints
+		if (blueprint_format.book[1]) then
+			active[1].set_stack("blueprint")
+		else
+			active[1].clear()
+		end
+		for i = 1, #main do
+			if (blueprint_format.book[i+1]) then
+				main[i].set_stack("blueprint")
+			else
+				main[i].clear()
+			end
+		end
+
+		-- If we have extra blueprints, put them back in
+		local extra_blueprints = -advanced_circuits
+		if (extra_blueprints > 0 and not active[1].valid_for_read) then 
+			active[1].set_stack("blueprint")
+			extra_blueprints = extra_blueprints - 1
+		end
+		for i = 1, #main do
+			if (extra_blueprints > 0 and not main[i].valid_for_read) then
+				main[i].set_stack("blueprint")
+				extra_blueprints = extra_blueprints - 1
+			end
+		end
 	end
 
 	textbox.text = ""
 
-	if (not blueprint_format.icons or type(blueprint_format.icons) ~= "table" or #blueprint_format.icons < 1) then
-		player.print({"unknown-format"})
+	if (not book) then
+		local error = load_blueprint_data(blueprint, blueprint_format)
+		if (error) then
+			player.print(error)
+		end
 		return
 	end
-
-	status, result = pcall(blueprint.set_blueprint_entities, blueprint_format.entities)
-	if (not status) then
-		player.print({"blueprint-api-error", result})
-		blueprint.set_blueprint_entities(nil)
-		return
-	end
-
-	status, result = pcall(blueprint.set_blueprint_tiles, blueprint_format.tiles)
-	if (not status) then
-		player.print({"blueprint-api-error", result})
-		blueprint.set_blueprint_entities(nil)
-		return
-	end
-
-	if (blueprint.is_blueprint_setup()) then
-		status, result = pcall(function() blueprint.blueprint_icons = blueprint_format.icons end)
-		if (not status) then
-			player.print({"blueprint-icon-error", result})
-			blueprint.set_blueprint_entities(nil)
-			blueprint.set_blueprint_tiles(nil)
-			return
+	
+	for i, page in pairs(blueprint_format.book) do
+		local active = book.get_inventory(defines.inventory.item_active)
+		local main = book.get_inventory(defines.inventory.item_main)
+		local error
+		if (i == 1) then
+			error = load_blueprint_data(active[1], page)
+		else
+			error = load_blueprint_data(main[i-1], page)
+		end
+		if (error and error[1] ~= "unknown-format") then
+			player.print(error)
 		end
 	end
-
-	blueprint.label = blueprint_format.name or ""
 end
 
 local duplicate_filenames
@@ -320,6 +397,7 @@ end
 
 function save_blueprint_as(player, filename)
 	blueprints_saved = 0
+	duplicate_filenames = {}
 
 	if (not holding_valid_blueprint(player) and not holding_book(player)) then
 		player.print({"no-blueprint-in-hand"})
