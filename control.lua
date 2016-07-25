@@ -389,7 +389,10 @@ function book_to_file(player, book, filename)
 			}
 		end
 	end
-
+	if (book.label) then
+		blueprint_format.name = book.label
+	end
+	
 	local data = BlueprintString.toString(blueprint_format)
 	filename = fix_filename(player, filename)
 	game.write_file("blueprint-string/" .. filename .. ".txt", data)
