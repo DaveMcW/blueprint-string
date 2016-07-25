@@ -53,6 +53,12 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 ####Changelog
 
+Version 3.1.0
+- Added blueprint book support
+- Added label support
+- Empty blueprints are crafted automatically (cost: 1 advanced circuit)
+- To overwrite a blueprint, click the load button while holding that blueprint
+
 Version 3.0.3
 - Fixed filter inserter bug
 
