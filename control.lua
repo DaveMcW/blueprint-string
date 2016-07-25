@@ -338,6 +338,7 @@ function load_blueprint(player)
 			player.print(error)
 		end
 	end
+	book.label = blueprint_format.name or ""
 end
 
 local duplicate_filenames
