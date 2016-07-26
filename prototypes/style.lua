@@ -75,8 +75,8 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 			priority = "extra-high-no-scale",
 			width = 36,
 			height = 36,
-			x = 36,
-			y = 0,
+			x = 0,
+			y = 36,
 		}
 	},
 	clicked_graphical_set =
@@ -87,8 +87,8 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 			filename = "__blueprint-string__/graphics/gui.png",
 			width = 36,
 			height = 36,
-			x = 36,
-			y = 0,
+			x = 0,
+			y = 36,
 		}
 	},
 	left_click_sound =
@@ -126,8 +126,8 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 			priority = "extra-high-no-scale",
 			width = 36,
 			height = 36,
-			x = 108,
-			y = 0,
+			x = 72,
+			y = 36,
 		}
 	},
 	clicked_graphical_set =
@@ -138,8 +138,8 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 			filename = "__blueprint-string__/graphics/gui.png",
 			width = 36,
 			height = 36,
-			x = 108,
-			y = 0,
+			x = 72,
+			y = 36,
 		}
 	},
 	left_click_sound =
@@ -164,8 +164,8 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 			priority = "extra-high-no-scale",
 			width = 36,
 			height = 36,
-			x = 0,
-			y = 36,
+			x = 36,
+			y = 0,
 		}
 	},
 	hovered_graphical_set =
@@ -215,8 +215,8 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 			priority = "extra-high-no-scale",
 			width = 36,
 			height = 36,
-			x = 72,
-			y = 36,
+			x = 108,
+			y = 0,
 		}
 	},
 	hovered_graphical_set =
@@ -280,7 +280,7 @@ data.raw["gui-style"].default["blueprintstring_button_upgrade"] =
 			width = 36,
 			height = 36,
 			x = 144,
-			y = 0,
+			y = 36,
 		}
 	},
 	clicked_graphical_set =
@@ -292,7 +292,7 @@ data.raw["gui-style"].default["blueprintstring_button_upgrade"] =
 			width = 36,
 			height = 36,
 			x = 144,
-			y = 0,
+			y = 36,
 		}
 	},
 	left_click_sound =

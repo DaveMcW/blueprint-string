@@ -53,6 +53,9 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 ####Changelog
 
+Version 3.1.1
+- Toned down the 0.12.32 upgrade button
+
 Version 3.1.0
 - Added blueprint book support
 - Added label support

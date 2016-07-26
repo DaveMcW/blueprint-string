@@ -97,9 +97,6 @@ function holding_book(player)
 end
 
 function find_empty_blueprint(player, no_crafting)
-	local main = player.get_inventory(defines.inventory.player_main)
-	local quickbar = player.get_inventory(defines.inventory.player_quickbar)
-
 	if (holding_blueprint(player)) then
 		if (player.cursor_stack.is_blueprint_setup()) then
 			player.cursor_stack.set_blueprint_entities(nil)
@@ -108,6 +105,9 @@ function find_empty_blueprint(player, no_crafting)
 		end
 		return player.cursor_stack
 	end
+
+	local main = player.get_inventory(defines.inventory.player_main)
+	local quickbar = player.get_inventory(defines.inventory.player_quickbar)
 
 	local stacks = filter(quickbar, "blueprint")
 	for i, stack in pairs(filter(main, "blueprint")) do
@@ -244,6 +244,11 @@ function load_blueprint(player)
 	local book = nil
 	if (not blueprint_format.book) then
 		-- Blueprint
+		if (holding_book(player)) then
+			player.print({"need-blueprint"})
+			return
+		end
+
 		blueprint = find_empty_blueprint(player)
 		if (not blueprint) then
 			player.print({"no-empty-blueprint"})
@@ -254,6 +259,11 @@ function load_blueprint(player)
 		if (type(blueprint_format.book) ~= "table") then
 			textbox.text = ""
 			player.print({"unknown-format"})
+			return
+		end
+
+		if (holding_blueprint(player)) then
+			player.print({"need-blueprint-book"})
 			return
 		end
 
@@ -332,6 +342,9 @@ function load_blueprint(player)
 		if (i == 1) then
 			error = load_blueprint_data(active[1], page)
 		else
+			if (i - 1 > #main) then
+				break
+			end
 			error = load_blueprint_data(main[i-1], page)
 		end
 		if (error and error[1] ~= "unknown-format") then
@@ -453,7 +466,7 @@ function save_all(player)
 
 	for position, stack in pairs(filter(quickbar, "blueprint")) do
 		if (stack.is_blueprint_setup()) then
-			local filename = "toolbar-"..position
+			local filename = "toolbar-" .. position
 			if (stack.label) then
 				filename = stack.label
 			end
@@ -463,7 +476,7 @@ function save_all(player)
 
 	for position, stack in pairs(filter(main, "blueprint")) do
 		if (stack.is_blueprint_setup()) then
-			local filename = "inventory-"..position
+			local filename = "inventory-" .. position
 			if (stack.label) then
 				filename = stack.label
 			end
@@ -471,8 +484,22 @@ function save_all(player)
 		end
 	end
 
-	-- TODO: Add blueprint books
-	
+	for position, stack in pairs(filter(quickbar, "blueprint-book")) do
+		local filename = "toolbar-" .. position
+		if (stack.label) then
+			filename = stack.label
+		end
+		book_to_file(player, stack, filename)
+	end
+
+	for position, stack in pairs(filter(main, "blueprint-book")) do
+		local filename = "inventory-" .. position
+		if (stack.label) then
+			filename = stack.label
+		end
+		book_to_file(player, stack, filename)
+	end
+
 	if (blueprints_saved > 0) then
 		player.print({"blueprints-saved", blueprints_saved})
 	else
