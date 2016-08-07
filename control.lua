@@ -242,6 +242,8 @@ function load_blueprint(player)
 
 	local blueprint = nil
 	local book = nil
+	local active = nil
+	local main = nil
 	if (not blueprint_format.book) then
 		-- Blueprint
 		if (holding_book(player)) then
@@ -284,8 +286,8 @@ function load_blueprint(player)
 			return
 		end
 
-		local active = book.get_inventory(defines.inventory.item_active)
-		local main = book.get_inventory(defines.inventory.item_main)
+		active = book.get_inventory(defines.inventory.item_active)
+		main = book.get_inventory(defines.inventory.item_main)
 
 		local advanced_circuits = slots - active.get_item_count("blueprint") - main.get_item_count("blueprint")
 		if (advanced_circuits > player.get_item_count("advanced-circuit")) then
@@ -327,6 +329,7 @@ function load_blueprint(player)
 
 	textbox.text = ""
 
+	-- Blueprint
 	if (not book) then
 		local error = load_blueprint_data(blueprint, blueprint_format)
 		if (error) then
@@ -335,20 +338,19 @@ function load_blueprint(player)
 		return
 	end
 	
-	for i, page in pairs(blueprint_format.book) do
-		local active = book.get_inventory(defines.inventory.item_active)
-		local main = book.get_inventory(defines.inventory.item_main)
-		local error
-		if (i == 1) then
-			error = load_blueprint_data(active[1], page)
-		else
-			if (i - 1 > #main) then
-				break
-			end
-			error = load_blueprint_data(main[i-1], page)
-		end
+	-- Blueprint Book
+	if (blueprint_format.book[1]) then
+		local error = load_blueprint_data(active[1], blueprint_format.book[1])
 		if (error and error[1] ~= "unknown-format") then
 			player.print(error)
+		end
+	end
+	for i = 1, #main do
+		if (blueprint_format.book[i+1]) then
+			local error = load_blueprint_data(main[i], blueprint_format.book[i+1])
+			if (error and error[1] ~= "unknown-format") then
+				player.print(error)
+			end
 		end
 	end
 	book.label = blueprint_format.name or ""

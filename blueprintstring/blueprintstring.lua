@@ -87,6 +87,9 @@ function fix_entities(array)
 					entity.control_behavior = {decider_conditions = entity.conditions.decider}
 				end
 			end
+			if (entity.name == "constant-combinator" and entity.filters) then
+				entity.control_behavior = {filters = entity.filters}
+			end
 
 			-- Add entity number
 			entity.entity_number = count
