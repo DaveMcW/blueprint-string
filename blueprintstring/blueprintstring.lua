@@ -91,6 +91,16 @@ function fix_entities(array)
 				entity.control_behavior = {filters = entity.filters}
 			end
 
+			-- Factorio 0.13 format
+			if (entity.name == "constant-combinator" and entity.control_behavior and type(entity.control_behavior) == 'table' and entity.control_behavior.filters and type(entity.control_behavior.filters) == 'table') then
+				for _, filter in pairs(entity.control_behavior.filters) do
+					local uint32 = tonumber(filter.count)
+					if (uint32 and uint32 >= 2147483648 and uint32 < 4294967296) then
+						filter.count = uint32 - 4294967296
+					end
+				end
+			end
+
 			-- Add entity number
 			entity.entity_number = count
 			entities[count] = entity
