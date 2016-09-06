@@ -53,6 +53,9 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 ####Changelog
 
+Version 4.0.0
+- Compatible with Factorio 0.14.0
+
 Version 3.1.2
 - Fixed constant combinators from 0.12 blueprints
 
