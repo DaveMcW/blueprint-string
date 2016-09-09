@@ -2,9 +2,6 @@ local BlueprintString = require "blueprintstring.blueprintstring"
 BlueprintString.COMPRESS_STRINGS = true
 BlueprintString.LINE_LENGTH = 120
 
--- Total inventory slots for a blueprint book. How can I detect this at runtime?
-local BOOK_MAX_SLOTS = 31 
-
 function init_gui(player)
 	if (not player.force.technologies["automated-construction"].researched) then
 		return
@@ -279,7 +276,7 @@ function load_blueprint(player)
 			return
 		end
 
-		local slots = math.min(page_count, BOOK_MAX_SLOTS)
+		local slots = math.min(page_count, game.item_prototypes["blueprint-book"].inventory_size + 1)
 		book = find_empty_book(player, slots)
 		if (not book) then
 			player.print({"no-empty-blueprint"})
