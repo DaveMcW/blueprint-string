@@ -1,3 +1,4 @@
+require "defines"
 local BlueprintString = require "blueprintstring.blueprintstring"
 BlueprintString.COMPRESS_STRINGS = true
 BlueprintString.LINE_LENGTH = 120
