@@ -53,6 +53,10 @@ This mod has strict error checking, so bad strings will not crash your game or m
 
 ####Changelog
 
+Version 5.0.0
+- Compatible with Factorio 0.15.4
+- Removed export buttons
+
 Version 4.0.0
 - Compatible with Factorio 0.14.0
 

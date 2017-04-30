@@ -111,28 +111,28 @@ local function deserialize(data, opts)
   if not f then return f, res end
   if opts and opts.safe == false then return pcall(f) end
 
-  local count, thread = 0, coroutine.running()
-  local h, m, c = debug.gethook(thread)
+--  local count, thread = 0, coroutine.running()
+--  local h, m, c = debug.gethook(thread)
   --debug.sethook(function (e, l) count = count + 1
   --  if count >= 3 then error("cannot call functions") end
   --end, "c")
   -- Timeout check added by David McWilliams
-  local linecount = 0
-  debug.sethook(function (e, l)
-    if (e == "call") then
-      count = count + 1
-      if count >= 3 then error("cannot call functions") end
-    elseif (e == "line") then
-	  linecount = linecount + 1
-      if linecount > 999999 then
-        linecount = 0  -- set again, to give us time to remove the hook
-        error("timeout")
-      end
-    end
-  end, "cl")
+--  local linecount = 0
+--  debug.sethook(function (e, l)
+--    if (e == "call") then
+--      count = count + 1
+--      if count >= 3 then error("cannot call functions") end
+--    elseif (e == "line") then
+--	  linecount = linecount + 1
+--      if linecount > 999999 then
+--        linecount = 0  -- set again, to give us time to remove the hook
+--        error("timeout")
+--      end
+--    end
+--  end, "cl")
   local res = {pcall(f)}
-  count = 0 -- set again, otherwise it's tripped on the next sethook
-  debug.sethook(thread, h, m, c)
+--  count = 0 -- set again, otherwise it's tripped on the next sethook
+--  debug.sethook(thread, h, m, c)
   return (table.unpack or unpack)(res)
 end
 

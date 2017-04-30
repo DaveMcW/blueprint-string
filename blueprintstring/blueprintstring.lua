@@ -217,7 +217,15 @@ M.fromString = function(data)
 		["smart-chest"] = "steel-chest",
 		["smart-inserter"] = "filter-inserter",
 	})
-		
+
+	-- Factorio 0.14 to 0.15 entity rename
+	data = data:gsub("[%w-]+", {
+		["diesel-locomotive"] = "locomotive",
+		["flame-thrower"] = "flamethrower",
+		["flame-thrower-ammo"] = "flamethrower-ammo",
+		["small-pump"] = "pump",
+	})
+	
 	local status, result = serpent.load(data)
 	if (not status) then
 		--game.player.print(result)

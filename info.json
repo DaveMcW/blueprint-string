@@ -1,9 +1,9 @@
 {
   "name": "blueprint-string",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "title": "Blueprint String",
   "author": "DaveMcW",
   "description": "Converts text strings into blueprints",
-  "factorio_version": "0.14",
+  "factorio_version": "0.15",
   "dependencies": []
 }

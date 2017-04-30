@@ -3,10 +3,6 @@ BlueprintString.COMPRESS_STRINGS = true
 BlueprintString.LINE_LENGTH = 120
 
 function init_gui(player)
-	if (not player.force.technologies["automated-construction"].researched) then
-		return
-	end
-
 	if (not player.gui.top["blueprint-string-button"]) then
 		player.gui.top.add{type="button", name="blueprint-string-button", style="blueprintstring_button_main"}
 	end
@@ -22,16 +18,6 @@ script.on_event(defines.events.on_player_created, function(event)
 	init_gui(game.players[event.player_index])
 end)
 
-script.on_event(defines.events.on_research_finished, function(event)
-	if (event.research.name == "automated-construction") then
-		for _, player in pairs(game.players) do
-			if (event.research.force.name == player.force.name) then
-				init_gui(player)
-			end
-		end
-	end
-end)
-
 function expand_gui(player)
 	local frame = player.gui.left["blueprint-string"]
 	if (frame) then
@@ -41,8 +27,8 @@ function expand_gui(player)
 		frame.add{type="label", caption={"textbox-caption"}}
 		frame.add{type="textfield", name="blueprint-string-text"}
 		frame.add{type="button", name="blueprint-string-load", style="blueprintstring_button_load"}
-		frame.add{type="button", name="blueprint-string-save", style="blueprintstring_button_saveas"}
-		frame.add{type="button", name="blueprint-string-save-all", style="blueprintstring_button_saveall"}
+--		frame.add{type="button", name="blueprint-string-save", style="blueprintstring_button_saveas"}
+--		frame.add{type="button", name="blueprint-string-save-all", style="blueprintstring_button_saveall"}
 		frame.add{type="button", name="blueprint-string-upgrade", style="blueprintstring_button_upgrade"}
 	end
 end
@@ -121,8 +107,7 @@ function find_empty_blueprint(player, no_crafting)
 	end
 	
 	-- Craft a new blueprint
-	if (player.can_insert("blueprint") and player.get_item_count("advanced-circuit") >= 1) then
-		player.remove_item{name="advanced-circuit", count=1}
+	if (player.can_insert("blueprint")) then
 		if (player.insert("blueprint") == 1) then
 			return find_empty_blueprint(player, true)
 		end
@@ -143,7 +128,6 @@ function find_empty_book(player, slots, no_crafting)
 		return player.cursor_stack
 	end
 
-	local advanced_circuits = player.get_item_count("advanced-circuit")
 	local main = player.get_inventory(defines.inventory.player_main)
 	local quickbar = player.get_inventory(defines.inventory.player_quickbar)
 	local first_empty_book = nil
@@ -180,8 +164,7 @@ function find_empty_book(player, slots, no_crafting)
 	end
 	
 	-- Craft a new book
-	if (player.can_insert("blueprint-book") and advanced_circuits >= 15 + slots) then
-		player.remove_item{name="advanced-circuit", count=15}
+	if (player.can_insert("blueprint-book")) then
 		if (player.insert("blueprint-book") == 1) then
 			return find_empty_book(player, slots, true)
 		end
@@ -227,6 +210,12 @@ function load_blueprint(player)
 	local data = trim(textbox.text)
 	if (data == "") then
 		player.print({"no-string"})
+		return
+	end
+
+	data = trim(data)
+	if (string.sub(data, 1, 8) ~= "do local" and string.sub(data, 1, 4) ~= "H4sI") then
+		player.print({"new-style-string"})
 		return
 	end
 
@@ -286,16 +275,6 @@ function load_blueprint(player)
 		active = book.get_inventory(defines.inventory.item_active)
 		main = book.get_inventory(defines.inventory.item_main)
 
-		local advanced_circuits = slots - active.get_item_count("blueprint") - main.get_item_count("blueprint")
-		if (advanced_circuits > player.get_item_count("advanced-circuit")) then
-			player.print({"need-advanced-circuit", advanced_circuits})
-			return
-		end
-		
-		if (advanced_circuits > 0) then
-			player.remove_item{name="advanced-circuit", count=advanced_circuits}
-		end
-
 		-- Create the required blueprints
 		if (blueprint_format.book[1]) then
 			active[1].set_stack("blueprint")
@@ -354,12 +333,7 @@ function load_blueprint(player)
 end
 
 local duplicate_filenames
-function fix_filename(player, filename)
-	if (#game.players > 1 and player.name and player.name ~= "") then
-		local name = player.name
-		filename = name .. "-" .. filename
-	end
-
+function fix_filename(filename)
 	filename = filename:gsub("[/\\:*?\"<>|]", "_")
 
 	local lowercase = filename:lower()
@@ -383,8 +357,8 @@ function blueprint_to_file(player, stack, filename)
 	}
 	
 	local data = BlueprintString.toString(blueprint_format)
-	filename = fix_filename(player, filename)
-	game.write_file("blueprint-string/" .. filename .. ".txt", data)
+	filename = fix_filename(filename)
+	game.write_file("blueprint-string/" .. filename .. ".txt", data, player.index)
 	blueprints_saved = blueprints_saved + 1
 end
 
@@ -406,7 +380,7 @@ function book_to_file(player, book, filename)
 	end
 	
 	local data = BlueprintString.toString(blueprint_format)
-	filename = fix_filename(player, filename)
+	filename = fix_filename(filename)
 	game.write_file("blueprint-string/" .. filename .. ".txt", data)
 	blueprints_saved = blueprints_saved + 1
 end
