@@ -78,13 +78,16 @@ function fix_entities(array)
 			-- Factorio 0.12 format
 			if (entity.conditions and type(entity.conditions) == 'table') then
 				if (entity.conditions.circuit) then
-					entity.control_behavior = {circuit_condition = entity.conditions.circuit}
+          entity.conditions.circuit.second_constant = entity.conditions.circuit.constant
+          entity.control_behavior = {circuit_condition = entity.conditions.circuit}
 				end
 				if (entity.conditions.arithmetic) then
-					entity.control_behavior = {arithmetic_conditions = entity.conditions.arithmetic}
+          entity.conditions.arithmetic.second_constant = entity.conditions.arithmetic.constant
+          entity.control_behavior = {arithmetic_conditions = entity.conditions.arithmetic}
 				end
 				if (entity.conditions.decider) then
-					entity.control_behavior = {decider_conditions = entity.conditions.decider}
+          entity.conditions.decider.second_constant = entity.conditions.decider.constant
+          entity.control_behavior = {decider_conditions = entity.conditions.decider}
 				end
 			end
 			if (entity.name == "constant-combinator" and entity.filters) then
