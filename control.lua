@@ -563,10 +563,3 @@ script.on_event(defines.events.on_gui_click, function(event)
 		upgrade_blueprint(player)
 	end
 end)
-
-script.on_event(defines.events.on_robot_built_entity, function(event) 
-	local entity = event.created_entity
-	if (entity and entity.type == "assembling-machine" and entity.recipe and not entity.recipe.enabled) then
-		entity.recipe = nil
-	end
-end)
