@@ -50,7 +50,7 @@ data.raw["gui-style"].default["blueprintstring_button_style"] =
 data.raw["gui-style"].default["blueprintstring_button_main"] =
 {
 	type = "button_style",
-	parent = "button_style",
+	parent = "button",
 	width = 33,
 	height = 33,
 	default_graphical_set =
@@ -101,7 +101,7 @@ data.raw["gui-style"].default["blueprintstring_button_main"] =
 data.raw["gui-style"].default["blueprintstring_button_load"] =
 {
 	type = "button_style",
-	parent = "button_style",
+	parent = "button",
 	width = 33,
 	height = 33,
 	default_graphical_set =
@@ -152,7 +152,7 @@ data.raw["gui-style"].default["blueprintstring_button_load"] =
 data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 {
 	type = "button_style",
-	parent = "button_style",
+	parent = "button",
 	width = 33,
 	height = 33,
 	default_graphical_set =
@@ -203,7 +203,7 @@ data.raw["gui-style"].default["blueprintstring_button_saveas"] =
 data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 {
 	type = "button_style",
-	parent = "button_style",
+	parent = "button",
 	width = 33,
 	height = 33,
 	default_graphical_set =
@@ -254,7 +254,7 @@ data.raw["gui-style"].default["blueprintstring_button_saveall"] =
 data.raw["gui-style"].default["blueprintstring_button_upgrade"] =
 {
 	type = "button_style",
-	parent = "button_style",
+	parent = "button",
 	width = 33,
 	height = 33,
 	default_graphical_set =
