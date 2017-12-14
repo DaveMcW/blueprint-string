@@ -223,6 +223,7 @@ M.fromString = function(data)
 
 	-- Factorio 0.14 to 0.15 entity rename
 	data = data:gsub("[%w-]+", {
+		["alien-artifact"] = "uranium-235",
 		["alien-science"] = "production-science-pack",
 		["diesel-locomotive"] = "locomotive",
 		["flame-thrower"] = "flamethrower",
