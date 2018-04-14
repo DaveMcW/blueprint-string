@@ -96,18 +96,28 @@ function fix_entities(array)
 
 			-- Factorio 0.13 format
 			if (entity.name == "constant-combinator" and entity.control_behavior and type(entity.control_behavior) == 'table' and entity.control_behavior.filters and type(entity.control_behavior.filters) == 'table') then
-				for _, filter in pairs(entity.control_behavior.filters) do
+				for index, filter in pairs(entity.control_behavior.filters) do
 					local uint32 = tonumber(filter.count)
 					if (uint32 and uint32 >= 2147483648 and uint32 < 4294967296) then
 						filter.count = uint32 - 4294967296
 					end
+					-- remove unknown signals
+          if filter.signal.type == "virtual" and not game.virtual_signal_prototypes[filter.signal.name] then
+            table.remove(entity.control_behavior.filters, index)
+          elseif filter.signal.type == "item" and not game.item_prototypes[filter.signal.name] then
+            table.remove(entity.control_behavior.filters, index)
+          elseif filter.signal.type == "fluid" and not game.fluid_prototypes[filter.signal.name] then
+            table.remove(entity.control_behavior.filters, index)
+					end
 				end
 			end
-
-			-- Add entity number
-			entity.entity_number = count
-			entities[count] = entity
-			count = count + 1
+			
+			if game.entity_prototypes[entity.name] then --skip over unknown entities
+				-- Add entity number
+				entity.entity_number = count
+				entities[count] = entity
+				count = count + 1
+			end
 		end
 	end
 	return entities
